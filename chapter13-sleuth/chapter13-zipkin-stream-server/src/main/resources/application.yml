@@ -1,0 +1,64 @@
+server:
+  port: 9411
+
+spring:
+  application:
+      name: microservice-zipkin-stream-server
+
+---
+spring:
+  profiles:
+    active: mysql
+
+####################### stream Config & Datasource Config###########################
+
+---
+zipkin:
+  storage:
+#   following are for es-storage
+    StorageComponent: elasticsearch
+    type: elasticsearch
+    elasticsearch:
+      cluster: elasticsearch-zipkin-cluster
+      hosts: ${ES_ADDR:localhost}:9200
+      max-requests: 64
+      index: zipkin
+      index-shards: 5
+      index-replicas: 1
+spring:
+  profiles: es
+
+---
+spring:
+  profiles: mysql
+  rabbitmq:
+    host: ${RABBIT_ADDR:192.168.1.204}
+    port: ${RABBIT_PORT:5672}
+    username: guest
+    password: guest
+  sleuth:
+    enabled: false
+  datasource:
+    url:  jdbc:mysql://192.168.1.200:3306/zipkin?autoReconnect=true&useSSL=false
+    continue-on-error: false
+    initialize: true
+    max-active: 50
+    max-idle: 10
+    max-wait: 10000
+    min-evictable-idle-time-millis: 60000
+    min-idle: 8
+    name: dbcp1
+    test-on-borrow: false
+    test-on-return: false
+    test-while-idle: false
+    time-between-eviction-runs-millis: 5000
+    username: simu
+    password: simu123
+    schema[0]: classpath:/zipkin.sql
+
+zipkin:
+  storage:
+    type: mysql
+
+
+

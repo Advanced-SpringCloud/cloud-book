@@ -1,0 +1,127 @@
+spring:
+  redis:
+    host: 192.168.1.204
+    password: Superid123
+    port: 6378
+  application:
+      name: aoho-gateway
+  cloud:
+    consul:
+      host: 192.168.1.204
+      port: 8500
+      discovery:
+        ip-address: ${HOST_ADDRESS:localhost}
+        port: ${SERVER_PORT:${server.port}}
+#        healthCheckPath: /health
+        healthCheckInterval: 15s
+        instance-id: gateway-server-${server.port}
+        service-name: gateway-server
+
+server:
+  port: 9090
+
+---
+test:
+  hostport: localhost:9090
+#  hostport: localhost:5000
+  uri: http://${test.hostport}
+
+
+spring:
+  cloud:
+    gateway:
+      locator:
+        enabled: true
+      default-filters:
+      - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+
+      routes:
+      # =====================================
+      - id: route_retry
+        uri: lb://user
+        predicates:
+        - Path=/test/**
+        filters:
+        - Retry
+      # =====================================
+      - id: service_to_consul
+        uri: lb://user
+        order: 8000
+        predicates:
+        - Path=/test2/**
+        filters:
+        - StripPrefix=1
+      - id: netty_route
+        uri: http://baidu.com
+        order: 8000
+        predicates:
+        - Path=/test100/**
+        filters:
+        - name: RequestRateLimiter
+          args:
+            key-resolver: "#{@remoteAddrKeyResolver}"
+            redis-rate-limiter.replenishRate: 2
+            redis-rate-limiter.burstCapacity: 1
+        - StripPrefix=1
+      - id: remoteaddr_route
+        uri: http://example.org
+        predicates:
+        - RemoteAddr=192.168.1.1/32
+      - id: websocket_test
+        uri: ws://localhost:9000
+        order: 9000
+        predicates:
+        - Path=/engine.io
+      # =====================================
+      - id: default_path_to_httpbin
+        uri: localhost:9090
+        order: 10000
+        predicates:
+        - Path=/**
+        filters:
+        - AddRequestParameter=foo, bar
+      - id: hytstrix_route
+        uri: lb://user
+        order: 6000
+        predicates:
+        - Path=/user/**
+        filters:
+        - StripPrefix=1
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallbackcontroller?a=123
+      # =========
+      - id: weight_route1
+        uri: http://blueskykong.com
+        order: 6000
+        predicates:
+        - Weight=group3, 1
+        - Path=/weight/**
+        filters:
+        - StripPrefix=2
+      - id: weight_route2
+        uri: http://baidu.com
+        order: 6000
+        predicates:
+        - Path=/weight/**
+        - Weight=group3, 4
+        filters:
+        - StripPrefix=1
+      - id: request_header
+        uri: http://baidu.com
+        order: 6000
+        predicates:
+        - Path=/header/**
+        - Header=X-Next-Url, .+
+        filters:
+        - RequestHeaderToRequestUri=X-Next-Url
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+    org.springframework.http.server.reactive: debug
+    org.springframework.web.reactive: debug
+    reactor.ipc.netty: debug
+
+management.endpoints.web.exposure.include: '*'

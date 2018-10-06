@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      allowOverride: true
+      overrideNone: true
+      label: master
+      discovery:
+        enabled: true
+        service-id: config-server
+      enabled: true
+      fail-fast: true
+      profile: dev
+      username: aoho
+#      password: 123456
+    consul:
+      host: 192.168.1.204
+      port: 8500
+      discovery:
+        ip-address: ${HOST_ADDRESS:localhost}
+        port: ${SERVER_PORT:${server.port}}
+        healthCheckPath: /health
+        healthCheckInterval: 15s
+        instance-id: config-client-${server.port}
+        service-name: config-client
+
+name: aoho
+
+---
+cloud:
+  version: Camden
+
+server:
+  port: 8008
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    root: info
+
+
+
+

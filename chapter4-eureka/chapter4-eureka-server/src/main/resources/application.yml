@@ -1,0 +1,21 @@
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: standalone
+    instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+spring:
+  application:
+    name: eureka-service
+info:
+  app:
+    name: Eureka-Server
+
+
