@@ -8,4 +8,4 @@
 
 如遇刊印和错误，请加入读者群核实和校正，感谢您的支持。
 
-![读者讨论组](http://image.blueskykong.com/fb-group.PNG)
+![读者讨论组](http://image.blueskykong.com/fb-group-medium.jpg)
