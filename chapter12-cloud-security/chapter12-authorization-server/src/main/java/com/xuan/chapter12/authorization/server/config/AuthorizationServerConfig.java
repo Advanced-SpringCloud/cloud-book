@@ -36,7 +36,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .authorizedGrantTypes("authorization_code", "password", "refresh_token")// 客户端可以使用的授权类型
                 .scopes("all")// 允许请求范围
                 .secret("secret")// 客户端安全码
-                .redirectUris("http://192.168.1.168:8888/");// 回调地址
+                .redirectUris("http://localhost:8888/");// 回调地址
 
     }
 

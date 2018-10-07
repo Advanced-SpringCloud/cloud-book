@@ -155,6 +155,7 @@ public class InstanceService {
 
     @HystrixCollapser(batchMethod = "getInstanceByServiceIds",
             collapserProperties = {@HystrixProperty(name = "timerDelayInMilliseconds", value = "100")})
+    // 如果示范代码没有生效，请缩短请求合并的周期，如缩短到10ms，视运行电脑性能而定
     public Future<Instance> getInstanceByServiceId(String serviceId) {
         return null;
     }

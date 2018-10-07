@@ -1,6 +1,6 @@
 eureka:
   instance:
-    hostname: client
+    hostname: client # 如本地运行，请修改为localhost
     instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
   client:
 
