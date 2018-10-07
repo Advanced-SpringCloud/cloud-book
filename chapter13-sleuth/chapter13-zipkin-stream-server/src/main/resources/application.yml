@@ -32,14 +32,14 @@ spring:
 spring:
   profiles: mysql
   rabbitmq:
-    host: ${RABBIT_ADDR:192.168.1.204}
+    host: ${RABBIT_ADDR:localhost}
     port: ${RABBIT_PORT:5672}
     username: guest
     password: guest
   sleuth:
     enabled: false
   datasource:
-    url:  jdbc:mysql://192.168.1.200:3306/zipkin?autoReconnect=true&useSSL=false
+    url:  jdbc:mysql://localhost:3306/zipkin?autoReconnect=true&useSSL=false
     continue-on-error: false
     initialize: true
     max-active: 50
@@ -52,8 +52,8 @@ spring:
     test-on-return: false
     test-while-idle: false
     time-between-eviction-runs-millis: 5000
-    username: simu
-    password: simu123
+    username: root
+    password: _123456_
     schema[0]: classpath:/zipkin.sql
 
 zipkin:

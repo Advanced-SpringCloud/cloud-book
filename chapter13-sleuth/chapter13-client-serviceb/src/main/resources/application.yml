@@ -22,7 +22,7 @@ spring:
     sampler:
       probability: ${ZIPKIN_RATE:1}
   rabbitmq:
-    host: 192.168.1.204
+    host: localhost
     port: 5672
     username: guest
     password: guest
