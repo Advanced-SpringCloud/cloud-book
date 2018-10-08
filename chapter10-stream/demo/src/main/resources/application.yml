@@ -3,7 +3,7 @@ spring:
     name: tm-server
   cloud:
     consul:
-      host: 192.168.1.204
+      host: 127.0.0.1
       port: 8500
       discovery:
         ip-address: 192.169.1.78
@@ -24,7 +24,7 @@ spring:
           environment:
             spring:
               rabbitmq:
-                host: 192.168.1.200
+                host: 127.0.0.1
                 port: 5672
                 username: user
                 password: user
@@ -44,28 +44,8 @@ spring:
     suffix: .html
     cache: true
     check-template-location: true
-    content-type: text/html
     enabled: true
     encoding: UTF-8
-
-tx:
-  redis:
-    cluster: false
-#      redirects: 20
-    hostName: 192.168.1.200
-    port: 6378
-    password: Superid123
-  manager:
-    netty:
-      port: 9998
-      serialize: kryo
-      maxConnection: 100
-      maxThreads: 16
-      delayTime: 5
-      heartTime: 20
-
-transactionWaitMaxTime: 500
-redisSaveMaxTime: 3000
 
 logging:
   level:
