@@ -1,6 +1,6 @@
-package com.remcarpediem.stream.service;
+package com.zt.stream.service;
 
-import com.remcarpediem.stream.beans.Order;
+import com.zt.stream.beans.Order;
 import org.springframework.stereotype.Service;
 
 @Service

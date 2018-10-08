@@ -1,7 +1,7 @@
-package com.remcarpediem.stream.service;
+package com.zt.stream.service;
 
-import com.remcarpediem.stream.beans.Vote;
-import com.remcarpediem.stream.beans.VoteResult;
+import com.zt.stream.beans.Vote;
+import com.zt.stream.beans.VoteResult;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>rocket-binder</module>
+        <module>demo</module>
     </modules>
     <packaging>pom</packaging>
 

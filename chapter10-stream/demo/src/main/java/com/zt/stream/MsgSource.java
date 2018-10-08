@@ -1,4 +1,4 @@
-package com.remcarpediem.stream;
+package com.zt.stream;
 
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;

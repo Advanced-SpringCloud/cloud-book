@@ -1,7 +1,7 @@
-package com.remcarpediem.stream;
+package com.zt.stream;
 
-import com.remcarpediem.stream.beans.ComputeOrder;
-import com.remcarpediem.stream.beans.FoodOrder;
+import com.zt.stream.beans.ComputeOrder;
+import com.zt.stream.beans.FoodOrder;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;

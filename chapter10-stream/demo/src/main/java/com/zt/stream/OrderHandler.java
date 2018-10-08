@@ -1,7 +1,7 @@
-package com.remcarpediem.stream;
+package com.zt.stream;
 
-import com.remcarpediem.stream.beans.Order;
-import com.remcarpediem.stream.service.OrderService;
+import com.zt.stream.beans.Order;
+import com.zt.stream.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
