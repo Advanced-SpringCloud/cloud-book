@@ -1,0 +1,29 @@
+
+mysql-zipkin:
+  restart: always
+  image: mysql:5.7
+  ports:
+    - "3306:3306"
+  environment:
+    - MYSQL_ROOT_PASSWORD=_123456_
+    - MYSQL_DATABASE=zipkin
+
+rabbit:
+  container_name: rabbit
+  image: 'rabbitmq:3.6-management'
+  ports:
+    - '15672:15672'
+    - '5672:5672'
+
+consul:
+  container_name: consul
+  image: 'consul:0.8.5'
+  ports:
+    - '8500:8500'
+    - '8300:8300'
+
+redis:
+  container_name: redis
+  image: 'redis:4'
+  ports:
+    - '6379:6379'

@@ -1,6 +1,6 @@
 spring:
   rabbitmq:
-    host: 192.168.1.204
+    host: localhost
     port: 5672
     username: guest
     password: guest
@@ -11,7 +11,7 @@ spring:
     name: config-server
   cloud:
     consul:
-      host: 192.168.1.204
+      host: localhost
       port: 8500
       discovery:
         ip-address: ${HOST_ADDRESS:localhost}

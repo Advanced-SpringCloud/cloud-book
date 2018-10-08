@@ -15,7 +15,7 @@ spring:
       username: aoho
 #      password: 123456
     consul:
-      host: 192.168.1.204
+      host: localhost
       port: 8500
       discovery:
         ip-address: ${HOST_ADDRESS:localhost}
