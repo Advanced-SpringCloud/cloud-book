@@ -10,12 +10,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cloud.stream.binder.*;
 import org.springframework.cloud.stream.binder.rocket.properties.RocketMQBinderConfigurationProperties;
 import org.springframework.cloud.stream.binder.rocket.properties.RocketMQExtendedBindingProperties;
-import org.springframework.cloud.stream.binder.rocket.support.RocketMQMessageHandler;
-import org.springframework.cloud.stream.binder.rocket.support.RocketMQMessageListener;
+import org.springframework.cloud.stream.binder.rocket.support.AmqpOutboundEndpoint;
+import org.springframework.cloud.stream.binder.rocket.support.RocketInboundChannelAdapter;
 import org.springframework.cloud.stream.binder.rocket.support.RocketMQResourceManager;
 import org.springframework.cloud.stream.binder.rocket.properties.RocketConsumerProperties;
 import org.springframework.cloud.stream.binder.rocket.properties.RocketProducerProperties;
 import org.springframework.cloud.stream.binder.rocket.provisioning.RocketExchangeQueueProvisioner;
+import org.springframework.cloud.stream.binder.rocket.support.RocketTemplate;
+import org.springframework.cloud.stream.binder.rocket.support.SimpleRocketMessageListenerContainer;
 import org.springframework.cloud.stream.binder.rocket.utils.CommonUtils;
 import org.springframework.cloud.stream.provisioning.ConsumerDestination;
 import org.springframework.cloud.stream.provisioning.ProducerDestination;
@@ -101,13 +103,17 @@ public class RocketMessageChannelBinder extends
     protected MessageHandler createProducerMessageHandler(final ProducerDestination destination,
                                                           ExtendedProducerProperties<RocketProducerProperties> producerProperties, MessageChannel errorChannel)
             throws Exception {
+        final AmqpOutboundEndpoint endpoint = new AmqpOutboundEndpoint(
+                buildRabbitTemplate(destination, producerProperties, errorChannel != null));
+        return endpoint;
+    }
 
+
+    private RocketTemplate buildRabbitTemplate(final ProducerDestination destination, ExtendedProducerProperties<RocketProducerProperties> producerProperties, boolean hasErroChannel) {
         TopicConfig topicConfig = new TopicConfig(destination.getName());
-
-        RocketMQMessageHandler handler = new RocketMQMessageHandler(this.resourceManager, producerProperties,
+        RocketTemplate template = new RocketTemplate(this.resourceManager, producerProperties,
                 Collections.singletonList(topicConfig));
-
-        return handler;
+        return template;
     }
 
 
@@ -116,13 +122,19 @@ public class RocketMessageChannelBinder extends
     protected MessageProducer createConsumerEndpoint(final ConsumerDestination destination, final String group,
                                                      final ExtendedConsumerProperties<RocketConsumerProperties> extendedConsumerProperties) {
 
+        SimpleRocketMessageListenerContainer listenerContainer = new SimpleRocketMessageListenerContainer();
+
+        RocketInboundChannelAdapter rocketInboundChannelAdapter = new RocketInboundChannelAdapter(listenerContainer);
+        listenerContainer.setResourceManager(resourceManager);
+        listenerContainer.setTopic(destination.getName());
+
         boolean anonymous = !StringUtils.hasText(group);
         Assert.isTrue(!anonymous || !extendedConsumerProperties.getExtension().isEnableDlq(),
                 "DLQ support is not available for anonymous subscriptions");
         String consumerGroup = anonymous ? "anonymous-" + UUID.randomUUID().toString() : group;
-
-        return new RocketMQMessageListener(resourceManager, destination.getName(), consumerGroup,
-                extendedConsumerProperties);
+        listenerContainer.setConsumerGroup(consumerGroup);
+        listenerContainer.setExtendedConsumerProperties(extendedConsumerProperties);
+        return rocketInboundChannelAdapter;
     }
 
     @Override
