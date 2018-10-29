@@ -43,10 +43,9 @@ public class SimpleRocketMessageListenerContainer extends
         executor = Executors.newFixedThreadPool(10);
     }
 
+
     @Override
-    protected void doStart() throws Exception {
-        super.doStart();
-        super.doStart();
+    public void start() {
         synchronized (this.consumersMonitor) {
             //初始化Consumer
             int newConsumers = initializeConsumers();
@@ -63,6 +62,11 @@ public class SimpleRocketMessageListenerContainer extends
                 getTaskExecutor().execute(processor);
             }
         }
+    }
+
+    @Override
+    protected void doStart() throws Exception {
+        // do nothing
     }
 
     @Override

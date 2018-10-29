@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: tm-server
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        ip-address: 192.169.1.78
+        port: ${SERVER_PORT:${server.port}}
+        healthCheckPath: /health
+        healthCheckInterval: 15s
+        instance-id: tm-server-${server.port}
+        service-name: tm-server
+  stream:
+    bindings:
+      input:
+        content-type: text/plain
+        destination: sms
+        binder: rocket1
+      output:
+        content-type: text/plain
+        destination: sms
+        binder: rocket1
+    binders:
+      rocket1:
+        type: rocket
+    rocketmq:
+      binder:
+        nameSrvAddr: 192.168.1.100
+        brokers: 111,111
+      bindings:
+        output:
+          producer:
+            groupName: testEmbeddedOut2ProducerGroupName
+          consumer:
+            groupName: testEmbeddedOut2ProducerGroupName
+
+server:
+  port: 9668
+
+management:
+  security:
+    enabled: false
+
+---
+spring:
+  thymeleaf:
+    prefix: classpath:/html/
+    suffix: .html
+    cache: true
+    check-template-location: true
+    enabled: true
+    encoding: UTF-8
+
+logging:
+  level:
+    root: info
+    com.blueskykong.tm.server: debug
+  path: "./logs"

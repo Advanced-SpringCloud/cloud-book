@@ -16,6 +16,7 @@ import org.apache.rocketmq.common.message.MessageExt;
 import org.apache.rocketmq.common.protocol.heartbeat.MessageModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.MessageListener;
 import org.springframework.amqp.rabbit.core.ChannelAwareMessageListener;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.amqp.support.converter.SimpleMessageConverter;
@@ -62,12 +63,17 @@ public class RocketInboundChannelAdapter extends MessageProducerSupport {
     protected void doStop() {
     }
 
-    public class ListenerImpl implements Listener {
+    public class ListenerImpl implements Listener, MessageListener {
         public void onMessage(Message message) throws Exception {
             try {
                 this.createAndSend(message);
             } catch (RuntimeException e) {
             }
+        }
+
+        @Override
+        public void onMessage(org.springframework.amqp.core.Message message) {
+
         }
 
         private void createAndSend(Message message) {

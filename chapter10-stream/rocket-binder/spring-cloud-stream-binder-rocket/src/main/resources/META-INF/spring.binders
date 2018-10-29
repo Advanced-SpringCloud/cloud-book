@@ -1,2 +1,2 @@
-rabbit:\
-org.springframework.cloud.stream.binder.rocket.config.RabbitServiceAutoConfiguration
+rocket:\
+org.springframework.cloud.stream.binder.rocket.config.RocketMessageChannelBinderConfiguration

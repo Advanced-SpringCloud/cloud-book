@@ -105,6 +105,7 @@ public class RocketMessageChannelBinder extends
             throws Exception {
         final AmqpOutboundEndpoint endpoint = new AmqpOutboundEndpoint(
                 buildRabbitTemplate(destination, producerProperties, errorChannel != null));
+        endpoint.setBeanFactory(getBeanFactory());
         return endpoint;
     }
 

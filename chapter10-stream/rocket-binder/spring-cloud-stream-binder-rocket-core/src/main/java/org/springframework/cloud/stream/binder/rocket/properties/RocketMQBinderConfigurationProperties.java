@@ -1,13 +1,14 @@
 package org.springframework.cloud.stream.binder.rocket.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
+@Component
 @ConfigurationProperties(prefix = "spring.cloud.stream.rocketmq.binder")
 public class RocketMQBinderConfigurationProperties {
 
@@ -87,12 +88,20 @@ public class RocketMQBinderConfigurationProperties {
         return this.offsetUpdateShutdownTimeout;
     }
 
-    public String[] getNameSrvs() {
-        return this.nameSrvAddr;
+    public String[] getNameSrvAddr() {
+        return nameSrvAddr;
     }
 
-    public void setNameSrvs(String... nameSrvAddr) {
+    public void setNameSrvAddr(String[] nameSrvAddr) {
         this.nameSrvAddr = nameSrvAddr;
+    }
+
+    public String getDefaultNameSrvPort() {
+        return defaultNameSrvPort;
+    }
+
+    public String getDefaultBrokerPort() {
+        return defaultBrokerPort;
     }
 
     public void setDefaultNameSrvPort(String defaultNameSrvPort) {

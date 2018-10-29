@@ -7,8 +7,8 @@
         <artifactId>spring-cloud-stream-binder-rocket-parent</artifactId>
         <version>2.1.0.BUILD-SNAPSHOT</version>
     </parent>
-    <artifactId>spring-cloud-starter-stream-rabbit</artifactId>
-    <description>Spring Cloud Starter Stream Rabbit</description>
+    <artifactId>spring-cloud-starter-stream-rocket</artifactId>
+    <description>Spring Cloud Starter Stream Rocket</description>
     <url>http://projects.spring.io/spring-cloud</url>
     <organization>
         <name>Pivotal Software, Inc.</name>

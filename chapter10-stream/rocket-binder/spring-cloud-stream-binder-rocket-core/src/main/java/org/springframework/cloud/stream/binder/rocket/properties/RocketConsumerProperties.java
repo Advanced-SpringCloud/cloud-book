@@ -14,6 +14,7 @@ public class RocketConsumerProperties extends RocketCommonProperties {
 
     private String startOffset;
 
+
     private boolean enableDlq;
 
     private String dlqName;
