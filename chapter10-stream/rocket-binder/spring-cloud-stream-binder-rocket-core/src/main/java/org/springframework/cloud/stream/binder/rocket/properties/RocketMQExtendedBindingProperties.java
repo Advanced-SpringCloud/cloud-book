@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
-@Component
 @ConfigurationProperties("spring.cloud.stream.rocketmq")
 public class RocketMQExtendedBindingProperties
         implements ExtendedBindingProperties<RocketConsumerProperties, RocketProducerProperties> {

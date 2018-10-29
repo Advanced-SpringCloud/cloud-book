@@ -1,2 +1,2 @@
 rocket:\
-org.springframework.cloud.stream.binder.rocket.config.RocketMessageChannelBinderConfiguration
+org.springframework.cloud.stream.binder.rocket.config.RocketServiceAutoConfiguration

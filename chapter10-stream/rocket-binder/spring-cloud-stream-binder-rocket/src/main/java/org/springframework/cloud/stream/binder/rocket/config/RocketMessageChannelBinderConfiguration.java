@@ -14,13 +14,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@ConditionalOnMissingBean(Binder.class)
 @Import({PropertyPlaceholderAutoConfiguration.class})
 @EnableConfigurationProperties({RocketMQBinderConfigurationProperties.class, RocketMQExtendedBindingProperties.class})
 public class RocketMessageChannelBinderConfiguration {
 
     @Autowired
     private RocketMQBinderConfigurationProperties configurationProperties;
+
+    @Autowired
+    private RocketMQExtendedBindingProperties extendedBindingProperties;
 
     @Bean
     RocketExchangeQueueProvisioner provisioningProvider() {
