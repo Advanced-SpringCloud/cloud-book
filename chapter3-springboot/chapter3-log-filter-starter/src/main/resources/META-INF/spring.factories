@@ -1,0 +1,2 @@
+com.xuan.chapter3.logfilter.starter.annotation.EnableLogFilter=\
+  com.xuan.chapter3.logfilter.starter.config.LogFilterAutoConfiguration

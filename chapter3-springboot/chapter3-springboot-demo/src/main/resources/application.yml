@@ -1,0 +1,20 @@
+info:
+  author:
+    name: aoho
+  build:
+    artifact: "@project.artifactId@"
+    name: "@project.name@"
+    version: "@project.version@"
+
+server:
+  port: 8008
+
+sms:
+  retry-limitation-minutes: 1
+  validity-minute: 3
+  types:
+    - register
+    - login
+
+
+spring.config.location:

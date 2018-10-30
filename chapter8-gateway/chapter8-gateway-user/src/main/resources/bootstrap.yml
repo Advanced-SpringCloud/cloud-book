@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: user-service
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        ip-address: ${HOST_ADDRESS:localhost}
+        port: ${SERVER_PORT:${server.port}}
+#        healthCheckPath: /health
+        healthCheckInterval: 15s
+        instance-id: user-${server.port}
+        service-name: user
+
+
+
+
+name: aoho
+
+server:
+  port: 8005

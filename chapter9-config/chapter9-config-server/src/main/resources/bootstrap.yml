@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        ip-address: ${HOST_ADDRESS:localhost}
+        port: ${SERVER_PORT:${server.port}}
+        healthCheckPath: /health
+        healthCheckInterval: 15s
+        instance-id: config-server-${server.port}
+        service-name: config-server
+  security:
+    user:
+      name: aoho
+      password: 123456
+server:
+  port: 8888
+
+
+#encrypt:
+#  key: aoho
+encrypt:
+  key-store:
+    location: config-server.keystore
+    alias: config-server
+    password: 123456
+    secret: 123456
+
+---
+
+spring:
+  profiles: native
+  cloud:
+    config:
+      server:
+        native:
+          add-label-locations: true
+          search-locations: classpath:/config/${APP_LOCATE:dev}
+# java -jar xxx.jar --spring.profiles.active=test
+---
+spring:
+  cloud:
+    config:
+      server:
+        consul:
+          watch:
+            path: /ui
+            enabled: true
+        health:
+          enabled: false
+        git:
+          uri: https://gitee.com/keets/Config-Repo.git
+          searchPaths: ${APP_LOCATE:dev}
+        overrides:
+          name: keets
+
+---
+spring:
+  profiles:
+    active: default

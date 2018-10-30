@@ -1,0 +1,28 @@
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/, http://localhost:8762/eureka/
+
+
+
+spring:
+  application:
+    name: oauth2-client
+server:
+  port: 8888
+
+
+security:
+  oauth2:
+    client:
+      client-id: client
+      client-secret: secret
+      access-token-uri: http://localhost:8766/oauth/token
+      user-authorization-uri: http://localhost:8766/oauth/authorize
+      client-authentication-scheme: form
+    resource:
+      user-info-uri: http://localhost:8767/user
+      prefer-token-info: false
+

@@ -1,0 +1,49 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+#    virtual-host: /user
+---
+spring:
+  application:
+    name: config-server
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        ip-address: ${HOST_ADDRESS:localhost}
+        port: ${SERVER_PORT:${server.port}}
+        healthCheckPath: /health
+        healthCheckInterval: 15s
+        instance-id: config-server-${server.port}
+        service-name: config-server
+
+server:
+  port: 8888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+---
+spring.cloud.bus.trace.enabled: true
+---
+spring:
+  cloud:
+    config:
+      server:
+        consul:
+          watch:
+            path: /ui
+            enabled: true
+        health:
+          enabled: false
+        git:
+          uri: https://gitee.com/keets/Config-Repo.git
+          searchPaths: ${APP_LOCATE:dev}
