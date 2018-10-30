@@ -1,7 +1,6 @@
 package org.springframework.cloud.stream.binder.rocket.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.util.Arrays;

@@ -5,7 +5,6 @@
 package org.springframework.cloud.stream.binder.rocket.support;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.TopicConfig;
@@ -23,7 +22,6 @@ import reactor.util.context.Context;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  *
@@ -34,7 +32,6 @@ public class AmqpOutboundEndpoint extends AbstractAmqpOutboundEndpoint {
 
     protected RocketMQResourceManager                              resourceManager;
     protected     ExtendedProducerProperties<RocketProducerProperties> producerProperties;
-    protected     DefaultMQProducer                                    producer;
     protected     ObjectMapper                                         mapper;
 
     protected List<TopicConfig> topics;
@@ -80,19 +77,17 @@ public class AmqpOutboundEndpoint extends AbstractAmqpOutboundEndpoint {
 
     @Override
     protected Object handleRequestMessage(Message<?> message) {
-        if (this.producer != null) {
             try {
                 RocketMQMessage pubSubMessage = convert(message);
                 logger.info("handleMessageInternal message:{}", pubSubMessage.getMessage().toString());
                 SendResult sendResult = rocketTemplate.sendRocketMQ(pubSubMessage.getMessage());
-                logger.info(sendResult.toString());
+                if (sendResult != null) {
+                    logger.info(sendResult.toString());
+                }
             } catch (Exception e) {
                 logger.info("Exception: {}", e.getMessage());
                 e.printStackTrace();
             }
-        } else {
-            logger.info("this.producer is null.");
-        }
         return null;
     }
 

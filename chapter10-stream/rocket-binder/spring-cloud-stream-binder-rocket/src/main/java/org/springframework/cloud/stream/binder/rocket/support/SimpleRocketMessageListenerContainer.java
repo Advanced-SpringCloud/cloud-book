@@ -46,6 +46,11 @@ public class SimpleRocketMessageListenerContainer extends
 
     @Override
     public void start() {
+        try {
+            doStart();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         synchronized (this.consumersMonitor) {
             //初始化Consumer
             int newConsumers = initializeConsumers();
@@ -67,16 +72,15 @@ public class SimpleRocketMessageListenerContainer extends
     @Override
     protected void doStart() throws Exception {
         // do nothing
+        super.doStart();
     }
 
     @Override
     protected void doInitialize() throws Exception {
-
     }
 
     @Override
     protected void doShutdown() {
-
     }
 
     private int initializeConsumers() {
@@ -104,6 +108,7 @@ public class SimpleRocketMessageListenerContainer extends
 
         @Override
         public void run() {
+
             if (!isActive()) {
                 return;
             }
@@ -187,7 +192,8 @@ public class SimpleRocketMessageListenerContainer extends
         this.resourceManager = resourceManager;
     }
 
-    public void setTopic(String topic) {
+    public void
+    setTopic(String topic) {
         this.topic = topic;
     }
 
