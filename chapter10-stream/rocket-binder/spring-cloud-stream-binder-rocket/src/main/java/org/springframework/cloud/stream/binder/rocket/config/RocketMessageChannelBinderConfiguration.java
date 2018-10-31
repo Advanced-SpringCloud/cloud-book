@@ -32,7 +32,7 @@ public class RocketMessageChannelBinderConfiguration {
     @Bean
     RocketMessageChannelBinder rocketMessageChannelBinder() {
         RocketMessageChannelBinder messageChannelBinder = new RocketMessageChannelBinder(
-                this.configurationProperties, provisioningProvider());
+                this.configurationProperties, this.extendedBindingProperties, provisioningProvider());
         return messageChannelBinder;
     }
 

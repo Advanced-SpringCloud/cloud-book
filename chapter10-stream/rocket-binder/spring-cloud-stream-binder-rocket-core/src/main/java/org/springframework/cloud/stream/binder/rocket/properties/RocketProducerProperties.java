@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class RocketProducerProperties extends RocketCommonProperties {
 
-    private String groupName;
 
     private int bufferSize = 16384;
 
@@ -16,7 +15,7 @@ public class RocketProducerProperties extends RocketCommonProperties {
     private Map<String, String> configuration = new HashMap<>();
 
     public int getBufferSize() {
-        return this.bufferSize;
+        return bufferSize;
     }
 
     public void setBufferSize(int bufferSize) {
@@ -24,7 +23,7 @@ public class RocketProducerProperties extends RocketCommonProperties {
     }
 
     public boolean isSync() {
-        return this.sync;
+        return sync;
     }
 
     public void setSync(boolean sync) {
@@ -32,7 +31,7 @@ public class RocketProducerProperties extends RocketCommonProperties {
     }
 
     public int getBatchTimeout() {
-        return this.batchTimeout;
+        return batchTimeout;
     }
 
     public void setBatchTimeout(int batchTimeout) {
@@ -40,20 +39,10 @@ public class RocketProducerProperties extends RocketCommonProperties {
     }
 
     public Map<String, String> getConfiguration() {
-        return this.configuration;
+        return configuration;
     }
 
     public void setConfiguration(Map<String, String> configuration) {
         this.configuration = configuration;
     }
-
-    public String getGroupName() {
-        return this.groupName;
-    }
-
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
-    }
-
-
 }

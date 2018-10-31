@@ -55,15 +55,18 @@ public class RocketMessageChannelBinder extends
 
     private RocketMQResourceManager resourceManager;
 
-    private RocketMQExtendedBindingProperties extendedBindingProperties = new RocketMQExtendedBindingProperties();
+    private RocketMQExtendedBindingProperties extendedBindingProperties;
+
 
     public RocketMessageChannelBinder(RocketMQBinderConfigurationProperties configurationProperties,
+                                      RocketMQExtendedBindingProperties extendedBindingProperties,
                                       RocketExchangeQueueProvisioner provisioningProvider) {
         super(headersToMap(configurationProperties), provisioningProvider);
         this.configurationProperties = configurationProperties;
 
         RocketMQResourceManager rocketmqResourceManager = new RocketMQResourceManager(configurationProperties);
         this.resourceManager = rocketmqResourceManager;
+        this.extendedBindingProperties = extendedBindingProperties;
     }
 
     private static String[] headersToMap(RocketMQBinderConfigurationProperties configurationProperties) {
@@ -129,10 +132,7 @@ public class RocketMessageChannelBinder extends
         listenerContainer.setResourceManager(resourceManager);
         listenerContainer.setTopic(destination.getName());
 
-        boolean anonymous = !StringUtils.hasText(group);
-        Assert.isTrue(!anonymous || !extendedConsumerProperties.getExtension().isEnableDlq(),
-                "DLQ support is not available for anonymous subscriptions");
-        String consumerGroup = anonymous ? "anonymous-" + UUID.randomUUID().toString() : group;
+        String consumerGroup = extendedConsumerProperties.getExtension().getGroupName();
         listenerContainer.setConsumerGroup(consumerGroup);
         listenerContainer.setExtendedConsumerProperties(extendedConsumerProperties);
         return rocketInboundChannelAdapter;

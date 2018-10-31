@@ -15,15 +15,6 @@ public class RocketMQResourceManager {
         this.mapper = new ObjectMapper();
     }
 
-//	public SendResult publishMessage(RocketMQMessage pubSubMessage) throws MQClientException, RemotingException, MQBrokerException, InterruptedException{
-//		if(this.producer != null) {
-//			Message message = pubSubMessage.getMessage();
-//			logger.info("message:{}", message.toString());
-//			return this.producer.send(message);
-//		}
-//		return null;
-//	}
-
     public RocketMQBinderConfigurationProperties getConfigurationProperties() {
         return this.configurationProperties;
     }

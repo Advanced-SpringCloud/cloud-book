@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 public class OrderHandler {
     @StreamListener(Sink.INPUT)
     public void handle(Order order) {
-
+        Long id = order.getId();
+        String content = order.getContent();
     }
 }

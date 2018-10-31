@@ -10,6 +10,7 @@ import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.TopicConfig;
+import org.apache.rocketmq.remoting.common.RemotingHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.AmqpException;
@@ -69,6 +70,16 @@ public class RocketTemplate implements AmqpTemplate {
             this.producer = new DefaultMQProducer(groupName);
             this.producer.setNamesrvAddr(nameSrvConnectionString);
             this.producer.start();
+//            try {
+//                org.apache.rocketmq.common.message.Message msg = new org.apache.rocketmq.common.message.Message("sms" /* Topic */,
+//                        "TagA" /* Tag */,
+//                        ("Hello RocketMQ " + 1).getBytes(RemotingHelper.DEFAULT_CHARSET) /* Message body */
+//                );
+//                SendResult result = this.producer.send(msg);
+//                result.getMessageQueue();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
         }
     }
 
