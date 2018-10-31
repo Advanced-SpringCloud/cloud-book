@@ -5,6 +5,7 @@ server:
 eureka:
   instance:
     instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+    hostname: localhost
   client:
     register-with-eureka: false
     fetch-registry: false

@@ -1,8 +1,7 @@
 package com.xuan.chapter5.feign.client.client.api;
 
 import com.xuan.chapter.common.chapter5.dto.Instance;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @FeignClient("feign-service")
 public interface FeignServiceClient {
-
 
     @RequestMapping(value = "/instance/{serviceId}", method = RequestMethod.GET)
     public Instance getInstanceByServiceId(@PathVariable("serviceId") String serviceId);

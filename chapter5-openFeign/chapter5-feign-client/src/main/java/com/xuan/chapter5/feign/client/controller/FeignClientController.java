@@ -15,7 +15,6 @@ public class FeignClientController {
     @Autowired
     FeignServiceClient feignServiceClient;
 
-
     @RequestMapping(value = "/instance/{serviceId}", method = RequestMethod.GET)
     public Instance getInstanceByServiceId(@PathVariable("serviceId") String serviceId) {
         return feignServiceClient.getInstanceByServiceId(serviceId);
@@ -35,6 +34,5 @@ public class FeignClientController {
     public String updateInstanceByServiceId(@RequestBody Instance instance, @PathVariable("serviceId") String serviceId) {
         return feignServiceClient.updateInstanceByServiceId(instance, serviceId);
     }
-
 
 }
