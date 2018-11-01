@@ -1,0 +1,9 @@
+server:
+  port: 9411
+
+spring:
+  application:
+      name: microservice-zipkin-server
+
+
+

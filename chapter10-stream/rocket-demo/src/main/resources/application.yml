@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: tm-server
+  cloud:
+    stream:
+      bindings:
+        input:
+          content-type: text/plain
+          destination: sms
+          binder: rocket1
+        output:
+          content-type: text/plain
+          destination: sms
+          binder: rocket1
+      binders:
+        rocket1:
+          type: rocket
+      rocketmq:
+        binder:
+          nameSrvAddr: 127.0.0.1
+          default-name-srv-port: 9876
+        bindings:
+          output:
+            producer:
+              groupName: test
+          input:
+            consumer:
+              groupName: test
+server:
+  port: 9661
+
+management:
+  security:
+    enabled: false
+
+---
+spring:
+  thymeleaf:
+    prefix: classpath:/html/
+    suffix: .html
+    cache: true
+    check-template-location: true
+    enabled: true
+    encoding: UTF-8
+
+logging:
+  level:
+    root: info
+    com.blueskykong.tm.server: debug
+  path: "./logs"

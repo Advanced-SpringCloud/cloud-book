@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: tm-server
+  cloud:
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        ip-address: 192.169.1.78
+        port: ${SERVER_PORT:${server.port}}
+        healthCheckPath: /health
+        healthCheckInterval: 15s
+        instance-id: tm-server-${server.port}
+        service-name: tm-server
+    stream:
+      bindings:
+        msg-output:
+          content-type: text/plain
+          destination: sms
+          binder: rabbit1
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 127.0.0.1
+                port: 5672
+                username: user
+                password: user
+                virtual-host: /user
+      rabbit:
+        binder:
+          admin-addresses:
+        bindings:
+          test: 111
+          msg-output:
+            consumer:
+              transacted: false
+            producer:
+              compress: true
+server:
+  port: 9668
+
+management:
+  security:
+    enabled: false
+
+---
+spring:
+  thymeleaf:
+    prefix: classpath:/html/
+    suffix: .html
+    cache: true
+    check-template-location: true
+    enabled: true
+    encoding: UTF-8
+
+logging:
+  level:
+    root: info
+    com.blueskykong.tm.server: debug
+  path: "./logs"

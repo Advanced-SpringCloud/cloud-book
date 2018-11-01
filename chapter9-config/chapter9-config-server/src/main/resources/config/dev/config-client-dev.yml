@@ -1,0 +1,5 @@
+spring:
+  profiles: dev
+
+cloud:
+  version: Camden SR4
