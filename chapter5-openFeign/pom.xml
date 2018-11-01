@@ -18,17 +18,16 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <modules>
+        <module>chapter5-feign-client</module>
+        <module>chapter5-feign-service</module>
+    </modules>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
     </properties>
-
-
-    <modules>
-        <module>chapter5-feign-client</module>
-        <module>chapter5-feign-service</module>
-    </modules>
 
     <dependencies>
         <dependency>
@@ -51,6 +50,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>

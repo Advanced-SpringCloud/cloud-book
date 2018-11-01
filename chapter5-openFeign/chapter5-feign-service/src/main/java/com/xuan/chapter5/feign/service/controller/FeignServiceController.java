@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
  * Created by xuan on 2018/2/3.
  */
 @RestController
-@RequestMapping("/feign-service")
 public class FeignServiceController {
 
     private static final Logger logger = LoggerFactory.getLogger(FeignServiceController.class);
