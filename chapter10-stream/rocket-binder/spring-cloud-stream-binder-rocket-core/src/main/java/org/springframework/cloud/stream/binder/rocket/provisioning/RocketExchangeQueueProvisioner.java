@@ -89,20 +89,6 @@ public class RocketExchangeQueueProvisioner implements ProvisioningProvider<Exte
         }
         int partitionCount = properties.getInstanceCount() * properties.getConcurrency();
         createTopicsIfAutoCreateEnabledAndAdminUtilsPresent(name, partitionCount, properties.getExtension().isAutoRebalanceEnabled());
-//		if (this.configurationProperties.isAutoCreateTopics() && adminUtilsOperation != null) {
-//			final ZkUtils zkUtils = ZkUtils.apply(this.configurationProperties.getNameSrvConnectionString(),
-//					this.configurationProperties.getNameSrvSessionTimeout(),
-//					this.configurationProperties.getNameSrvConnectionTimeout(),
-//					JaasUtils.isZkSecurityEnabled());
-//			int partitions = adminUtilsOperation.partitionSize(name, zkUtils);
-//			if (properties.getExtension().isEnableDlq() && !anonymous) {
-//				String dlqTopic = StringUtils.hasText(properties.getExtension().getDlqName()) ?
-//						properties.getExtension().getDlqName() : "error." + name + "." + group;
-//				createTopicAndPartitions(dlqTopic, partitions, properties.getExtension().isAutoRebalanceEnabled());
-//				return new RocketMQConsumerDestination(name, partitions, dlqTopic);
-//			}
-//			return new RocketMQConsumerDestination(name, partitions);
-//		}
         return new RocketMQConsumerDestination(name);
     }
 
@@ -119,118 +105,6 @@ public class RocketExchangeQueueProvisioner implements ProvisioningProvider<Exte
             this.logger.info("Auto creation of topics is disabled.");
         }
     }
-
-    /**
-     * Creates a topic if needed, or try to increase its partition count to the
-     * desired number.
-     */
-    private void createTopicAndPartitions(final String topicName, final int partitionCount,
-                                          boolean tolerateLowerPartitionsOnBroker) {
-        //DefaultMQProducer producer = new DefaultMQProducer("ProducerGroupName1");
-        //producer.createTopic(key, newTopic, queueNum);
-//		final ZkUtils zkUtils = ZkUtils.apply(this.configurationProperties.getNameSrvConnectionString(),
-//				this.configurationProperties.getNameSrvSessionTimeout(),
-//				this.configurationProperties.getNameSrvConnectionTimeout(),
-//				JaasUtils.isZkSecurityEnabled());
-//		try {
-//			short errorCode = adminUtilsOperation.errorCodeFromTopicMetadata(topicName, zkUtils);
-//			if (errorCode == ErrorMapping.NoError()) {
-//				// only consider minPartitionCount for resizing if autoAddPartitions is true
-//				int effectivePartitionCount = this.configurationProperties.isAutoAddPartitions()
-//						? Math.max(this.configurationProperties.getMinPartitionCount(), partitionCount)
-//						: partitionCount;
-//				int partitionSize = adminUtilsOperation.partitionSize(topicName, zkUtils);
-//
-//				if (partitionSize < effectivePartitionCount) {
-//					if (this.configurationProperties.isAutoAddPartitions()) {
-//						adminUtilsOperation.invokeAddPartitions(zkUtils, topicName, effectivePartitionCount, null, false);
-//					}
-//					else if (tolerateLowerPartitionsOnBroker) {
-//						logger.warn("The number of expected partitions was: " + partitionCount + ", but "
-//								+ partitionSize + (partitionSize > 1 ? " have " : " has ") + "been found instead."
-//								+ "There will be " + (effectivePartitionCount - partitionSize) + " idle consumers");
-//					}
-//					else {
-//						throw new ProvisioningException("The number of expected partitions was: " + partitionCount + ", but "
-//								+ partitionSize + (partitionSize > 1 ? " have " : " has ") + "been found instead."
-//								+ "Consider either increasing the partition count of the topic or enabling " +
-//								"`autoAddPartitions`");
-//					}
-//				}
-//			}
-//			else if (errorCode == ErrorMapping.UnknownTopicOrPartitionCode()) {
-//				// always consider minPartitionCount for topic creation
-//				final int effectivePartitionCount = Math.max(this.configurationProperties.getMinPartitionCount(),
-//						partitionCount);
-//
-//				this.metadataRetryOperations.execute(new RetryCallback<Object, RuntimeException>() {
-//
-//					@Override
-//					public Object doWithRetry(RetryContext context) throws RuntimeException {
-//
-//						try {
-//							adminUtilsOperation.invokeCreateTopic(zkUtils, topicName, effectivePartitionCount,
-//									configurationProperties.getReplicationFactor(), new Properties());
-//						}
-//						catch (Exception e) {
-//							String exceptionClass = e.getClass().getName();
-//							if (exceptionClass.equals("TopicExistsException")
-//									|| exceptionClass.equals("errors.TopicExistsException")) {
-//								if (logger.isWarnEnabled()) {
-//									logger.warn("Attempt to create topic: " + topicName + ". Topic already exists.");
-//								}
-//							}
-//							else {
-//								throw e;
-//							}
-//						}
-//						return null;
-//					}
-//				});
-//			}
-//			else {
-//				throw new ProvisioningException("Error fetching topic metadata: ",
-//						ErrorMapping.exceptionFor(errorCode));
-//			}
-//		}
-//		finally {
-//			zkUtils.close();
-//		}
-    }
-
-//	public Collection<PartitionInfo> getPartitionsForTopic(final int partitionCount,
-//														final boolean tolerateLowerPartitionsOnBroker,
-//														final Callable<Collection<PartitionInfo>> callable) {
-//		try {
-//			return this.metadataRetryOperations
-//					.execute(new RetryCallback<Collection<PartitionInfo>, Exception>() {
-//
-//						@Override
-//						public Collection<PartitionInfo> doWithRetry(RetryContext context) throws Exception {
-//							Collection<PartitionInfo> partitions = callable.call();
-//							// do a sanity check on the partition set
-//							int partitionSize = partitions.size();
-//							if (partitionSize < partitionCount) {
-//								if (tolerateLowerPartitionsOnBroker) {
-//									logger.warn("The number of expected partitions was: " + partitionCount + ", but "
-//											+ partitionSize + (partitionSize > 1 ? " have " : " has ") + "been found instead."
-//											+ "There will be " + (partitionCount - partitionSize) + " idle consumers");
-//								}
-//								else {
-//									throw new IllegalStateException("The number of expected partitions was: "
-//											+ partitionCount + ", but " + partitionSize
-//											+ (partitionSize > 1 ? " have " : " has ") + "been found instead");
-//								}
-//							}
-//							return partitions;
-//						}
-//					});
-//		}
-//		catch (Exception e) {
-//			this.logger.error("Cannot initialize Binder", e);
-//			throw new BinderException("Cannot initialize binder:", e);
-//		}
-//	}
 
     private static final class RocketMQProducerDestination implements ProducerDestination {
 

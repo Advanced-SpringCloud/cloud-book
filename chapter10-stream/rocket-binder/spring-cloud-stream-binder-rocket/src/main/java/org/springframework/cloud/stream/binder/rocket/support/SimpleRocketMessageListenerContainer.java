@@ -10,6 +10,7 @@ import org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer
 import org.springframework.amqp.rabbit.listener.exception.FatalListenerStartupException;
 import org.springframework.cloud.stream.binder.ExtendedConsumerProperties;
 import org.springframework.cloud.stream.binder.rocket.properties.RocketConsumerProperties;
+import org.springframework.integration.support.MessageBuilderFactory;
 import org.springframework.messaging.Message;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class SimpleRocketMessageListenerContainer extends
     private String                                               topic;
     private String                                               consumerGroup;
     private ExtendedConsumerProperties<RocketConsumerProperties> extendedConsumerProperties;
+    private MessageBuilderFactory messageBuilderFactory;
 
     public SimpleRocketMessageListenerContainer() {
         executor = Executors.newFixedThreadPool(10);
@@ -89,6 +91,7 @@ public class SimpleRocketMessageListenerContainer extends
         rocketBlockingQueueConsumer.setExtendedConsumerProperties(extendedConsumerProperties);
         rocketBlockingQueueConsumer.setResourceManager(resourceManager);
         rocketBlockingQueueConsumer.setTopic(topic);
+        rocketBlockingQueueConsumer.setMessageBuilderFactory(this.messageBuilderFactory);
         consumers.add(rocketBlockingQueueConsumer);
         return 1;
     }
@@ -208,5 +211,14 @@ public class SimpleRocketMessageListenerContainer extends
 
     public void setExtendedConsumerProperties(ExtendedConsumerProperties<RocketConsumerProperties> extendedConsumerProperties) {
         this.extendedConsumerProperties = extendedConsumerProperties;
+    }
+
+    /**
+     * Setter method for property <tt>messageBuilderFactory</tt>.
+     *
+     * @param messageBuilderFactory  value to be assigned to property messageBuilderFactory
+     */
+    public void setMessageBuilderFactory(MessageBuilderFactory messageBuilderFactory) {
+        this.messageBuilderFactory = messageBuilderFactory;
     }
 }

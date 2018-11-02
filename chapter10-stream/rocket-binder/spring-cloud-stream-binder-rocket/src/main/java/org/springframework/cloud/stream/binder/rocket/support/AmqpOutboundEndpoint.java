@@ -97,12 +97,10 @@ public class AmqpOutboundEndpoint extends AbstractAmqpOutboundEndpoint {
     }
 
     protected RocketMQMessage convert(Message<?> message) throws Exception {
-        // String encodedHeaders = encodeHeaders(message.getHeaders());
         String topic = producerProperties.isPartitioned()
                 ? topics.get((Integer) message.getHeaders().get(BinderHeaders.PARTITION_HEADER)).getTopicName()
                 : topics.get(0).getTopicName();
 
-        // System.out.println(message.getPayload() instanceof byte[]);
         logger.info("this.topics.size(): {}", this.topics.size());
         for (TopicConfig topicConfig : topics) {
             logger.info(topicConfig.toString());
@@ -112,32 +110,15 @@ public class AmqpOutboundEndpoint extends AbstractAmqpOutboundEndpoint {
 
         MessageHeaders headers = message.getHeaders();
 
-        // Object contentType = headers.get("contentType");
-        // if(contentType != null) {
-        // Class<?> clazz =
-        // MessageConverterUtils.getJavaTypeForJavaObjectContentType(MimeType.valueOf(contentType.toString()));
-        // Input input = new Input(new ByteArrayInputStream(byteArray));
-        // Bar readObject = kryo.readObject(input, Bar.class);
-        //
-        // }
-
         for (Map.Entry<String, Object> entry : headers.entrySet()) {
             System.out.println("key : " + entry.getKey() + " value : " + entry.getValue());
         }
         try {
             MessageValues mv = EmbeddedHeaderUtils.extractHeaders(payload);
         } catch (Exception e) {
-            // e.printStackTrace();
             logger.info("Need to embed headers.");
 
             MessageValues original = new MessageValues(payload, headers);
-            // String[] headersArray = new String[headers.keySet().size()];
-            // int i = 0;
-            // for (Iterator<String> iterator = headers.keySet().iterator();
-            // iterator.hasNext();) {
-            // String s = iterator.next();
-            // headersArray[i++] = s;
-            // }
 
             rawPayloadNoHeaders = EmbeddedHeaderUtils.embedHeaders(original, "contentType");
         }

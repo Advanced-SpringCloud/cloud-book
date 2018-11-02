@@ -45,6 +45,7 @@ public class RocketInboundChannelAdapter extends MessageProducerSupport {
 
     public RocketInboundChannelAdapter(SimpleRocketMessageListenerContainer container) {
         this.listenerContainer = container;
+        this.listenerContainer.setMessageBuilderFactory(getMessageBuilderFactory());
     }
 
     @Override
@@ -69,6 +70,7 @@ public class RocketInboundChannelAdapter extends MessageProducerSupport {
             try {
                 this.createAndSend(message);
             } catch (RuntimeException e) {
+                e.printStackTrace();
             }
         }
 

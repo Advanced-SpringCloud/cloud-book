@@ -41,7 +41,6 @@ public class RocketBlockingQueueConsumer {
 
     private final BlockingQueue<RocketDelivery> queue;
     private volatile ShutdownSignalException shutdown;
-    private RocketMessagePropertiesConverter messagePropertiesConverter;
 
 
     public void setMapper(ObjectMapper mapper) {
@@ -76,15 +75,10 @@ public class RocketBlockingQueueConsumer {
         this.shutdown = shutdown;
     }
 
-    public void setMessagePropertiesConverter(RocketMessagePropertiesConverter messagePropertiesConverter) {
-        this.messagePropertiesConverter = messagePropertiesConverter;
-    }
 
     public RocketBlockingQueueConsumer(int prefetchCount) {
         super();
         this.queue = new LinkedBlockingQueue<RocketDelivery>(prefetchCount);
-        messagePropertiesConverter = new RocketMessagePropertiesConverter();
-        this.messageBuilderFactory = new DefaultMessageBuilderFactory();
     }
 
     public void start() {
