@@ -10,7 +10,9 @@ import org.springframework.context.annotation.PropertySource;
 @EnableConfigurationProperties
 public class RocketDemoApplication {
     /**
-     * error1:No route info of this topic 使用sh mqadmin updateTopic -b 192.168.0.102:10911 -o 1 -t sms -n localhost:9876
+     * error1:No route info of this topic 使用
+     * 1 sh mqadmin clusterList -n localhost:9876
+     * 2 sh mqadmin updateTopic -b 192.168.0.102:10911 -o 1 -t sms -n localhost:9876
      * https://rocketmq.apache.org/docs/simple-example/
      */
     public static void main(String[] args) {

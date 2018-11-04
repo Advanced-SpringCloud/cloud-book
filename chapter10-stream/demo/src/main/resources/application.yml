@@ -29,16 +29,6 @@ spring:
                 username: user
                 password: user
                 virtual-host: /user
-      rabbit:
-        binder:
-          admin-addresses:
-        bindings:
-          test: 111
-          msg-output:
-            consumer:
-              transacted: false
-            producer:
-              compress: true
 server:
   port: 9668
 
