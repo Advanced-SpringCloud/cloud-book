@@ -158,20 +158,7 @@ public class AmqpOutboundEndpoint extends AbstractAmqpOutboundEndpoint {
     private org.apache.rocketmq.common.message.Message convertToRocketMsg(String destination, Message<?> message) {
 
         Object payloadObj = message.getPayload();
-        byte[] payloads;
-
-        if (payloadObj instanceof String) {
-            payloads = ((String) payloadObj).getBytes(Charset.forName(charset));
-        } else {
-            try {
-                String jsonObj = mapper.writeValueAsString(payloadObj);
-                payloads = jsonObj.getBytes(Charset.forName(charset));
-            } catch (Exception e) {
-                throw new RuntimeException("convert to RocketMQ message failed.", e);
-            }
-        }
-
-        payloads = (byte[]) message.getPayload();
+        byte[] payloads = (byte[]) message.getPayload();
 
         String[] tempArr = destination.split(":", 2);
         String topic = tempArr[0];
