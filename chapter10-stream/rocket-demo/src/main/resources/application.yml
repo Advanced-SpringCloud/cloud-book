@@ -27,7 +27,7 @@ spring:
             consumer:
               groupName: test
 server:
-  port: 9661
+  port: 9662
 
 management:
   security:

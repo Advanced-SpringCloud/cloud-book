@@ -1,8 +1,10 @@
 package org.springframework.cloud.stream.binder.rocket.support;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.ConsumerCancelledException;
 import com.rabbitmq.client.ShutdownSignalException;
+import org.apache.commons.codec.Charsets;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
@@ -22,7 +24,10 @@ import org.springframework.integration.support.MessageBuilderFactory;
 import org.springframework.messaging.Message;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -41,6 +46,7 @@ public class RocketBlockingQueueConsumer {
 
     private final BlockingQueue<RocketDelivery> queue;
     private volatile ShutdownSignalException shutdown;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
 
     public void setMapper(ObjectMapper mapper) {
@@ -133,16 +139,27 @@ public class RocketBlockingQueueConsumer {
         public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
             for (MessageExt messageExt : list) {
                 byte[] payload = messageExt.getBody();
+                Map<String, String> headers = messageExt.getProperties();
                 try {
                     logger.info("Listener:" + new String(payload, "UTF-8"));
                 } catch (UnsupportedEncodingException e1) {
                     e1.printStackTrace();
                 }
                 try {
-                    MessageValues mv = EmbeddedHeaderUtils.extractHeaders(payload);
-                    logger.info("mv.payload:{}, headers:{}", mv.getPayload(), mv.getHeaders());
-                    org.springframework.messaging.Message<?> internalMsgObject = messageBuilderFactory.withPayload((byte[]) mv.getPayload())
-                            .copyHeaders(mv.getHeaders()).build();
+
+                    Map<String, String> userHeaders = new HashMap<>();
+                    for (String key : headers.keySet()) {
+                        if (key.startsWith("USERS_")) {
+                            String val = headers.get(key);
+                            String originKey = key.replace("USERS_", "");
+                            userHeaders.put(originKey, val);
+                        }
+                    }
+
+                    String jsonStr = new String(payload, Charsets.UTF_8);
+                    org.springframework.messaging.Message<?> internalMsgObject = messageBuilderFactory.withPayload(payload)
+                            .copyHeaders(userHeaders).build();
+
                     RocketBlockingQueueConsumer.this.queue.put(new RocketDelivery(internalMsgObject));
                 } catch (Exception e) {
                     e.printStackTrace();

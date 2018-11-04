@@ -4,10 +4,12 @@
  */
 package org.springframework.cloud.stream.binder.rocket.support;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.common.TopicConfig;
+import org.apache.rocketmq.common.message.MessageConst;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.stream.binder.BinderHeaders;
@@ -18,10 +20,14 @@ import org.springframework.cloud.stream.binder.rocket.properties.RocketProducerP
 import org.springframework.integration.amqp.outbound.AbstractAmqpOutboundEndpoint;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
+import org.springframework.messaging.converter.MappingJackson2MessageConverter;
+import org.springframework.util.StringUtils;
 import reactor.util.context.Context;
 
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  *
@@ -40,7 +46,13 @@ public class AmqpOutboundEndpoint extends AbstractAmqpOutboundEndpoint {
 
     protected volatile boolean running = false;
 
+    private String charset = "UTF-8";
+
+    private MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
+
     private RocketTemplate rocketTemplate;
+
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     public AmqpOutboundEndpoint(RocketTemplate template) {
         this.resourceManager = template.getResourceManager();
@@ -78,9 +90,14 @@ public class AmqpOutboundEndpoint extends AbstractAmqpOutboundEndpoint {
     @Override
     protected Object handleRequestMessage(Message<?> message) {
             try {
-                RocketMQMessage pubSubMessage = convert(message);
-                logger.info("handleMessageInternal message:{}", pubSubMessage.getMessage().toString());
-                SendResult sendResult = rocketTemplate.sendRocketMQ(pubSubMessage.getMessage());
+                String topic = producerProperties.isPartitioned()
+                        ? topics.get((Integer) message.getHeaders().get(BinderHeaders.PARTITION_HEADER)).getTopicName()
+                        : topics.get(0).getTopicName();
+
+                org.apache.rocketmq.common.message.Message rocketMessage =
+                                    convertToRocketMsg(topic, message);
+                logger.info("handleMessageInternal message:{}", rocketMessage.toString());
+                SendResult sendResult = rocketTemplate.sendRocketMQ(rocketMessage);
                 if (sendResult != null) {
                     logger.info(sendResult.toString());
                 }
@@ -112,16 +129,17 @@ public class AmqpOutboundEndpoint extends AbstractAmqpOutboundEndpoint {
 
         for (Map.Entry<String, Object> entry : headers.entrySet()) {
             System.out.println("key : " + entry.getKey() + " value : " + entry.getValue());
-        }
-        try {
-            MessageValues mv = EmbeddedHeaderUtils.extractHeaders(payload);
-        } catch (Exception e) {
-            logger.info("Need to embed headers.");
 
-            MessageValues original = new MessageValues(payload, headers);
-
-            rawPayloadNoHeaders = EmbeddedHeaderUtils.embedHeaders(original, "contentType");
         }
+//        try {
+//            MessageValues mv = EmbeddedHeaderUtils.extractHeaders(payload);
+//        } catch (Exception e) {
+//            logger.info("Need to embed headers.");
+//
+//            MessageValues original = new MessageValues(payload, headers);
+//
+//            rawPayloadNoHeaders = EmbeddedHeaderUtils.embedHeaders(original, "contentType");
+//        }
 
         try {
             String tags = this.producerProperties.getExtension().getTags();
@@ -135,6 +153,68 @@ public class AmqpOutboundEndpoint extends AbstractAmqpOutboundEndpoint {
             e.printStackTrace();
             throw e;
         }
+    }
+
+    private org.apache.rocketmq.common.message.Message convertToRocketMsg(String destination, Message<?> message) {
+
+        Object payloadObj = message.getPayload();
+        byte[] payloads;
+
+        if (payloadObj instanceof String) {
+            payloads = ((String) payloadObj).getBytes(Charset.forName(charset));
+        } else {
+            try {
+                String jsonObj = mapper.writeValueAsString(payloadObj);
+                payloads = jsonObj.getBytes(Charset.forName(charset));
+            } catch (Exception e) {
+                throw new RuntimeException("convert to RocketMQ message failed.", e);
+            }
+        }
+
+        payloads = (byte[]) message.getPayload();
+
+        String[] tempArr = destination.split(":", 2);
+        String topic = tempArr[0];
+        String tags = "";
+        if (tempArr.length > 1) {
+            tags = tempArr[1];
+        }
+
+        org.apache.rocketmq.common.message.Message rocketMsg = new org.apache.rocketmq.common.message.Message(topic, tags, payloads);
+
+        MessageHeaders headers = message.getHeaders();
+        if (Objects.nonNull(headers) && !headers.isEmpty()) {
+            Object keys = headers.get(MessageConst.PROPERTY_KEYS);
+            if (!StringUtils.isEmpty(keys)) { // if headers has 'KEYS', set rocketMQ message key
+                rocketMsg.setKeys(keys.toString());
+            }
+
+            // set rocketMQ message flag
+            Object flagObj = headers.getOrDefault("FLAG", "0");
+            int flag = 0;
+            try {
+                flag = Integer.parseInt(flagObj.toString());
+            } catch (NumberFormatException e) {
+                // ignore
+            }
+            rocketMsg.setFlag(flag);
+
+            // set rocketMQ message waitStoreMsgOkObj
+            Object waitStoreMsgOkObj = headers.getOrDefault("WAIT_STORE_MSG_OK", "true");
+            boolean waitStoreMsgOK = Boolean.TRUE.equals(waitStoreMsgOkObj);
+            rocketMsg.setWaitStoreMsgOK(waitStoreMsgOK);
+
+            headers.entrySet().stream()
+                    .filter(entry -> !Objects.equals(entry.getKey(), MessageConst.PROPERTY_KEYS)
+                            && !Objects.equals(entry.getKey(), "FLAG")
+                            && !Objects.equals(entry.getKey(), "WAIT_STORE_MSG_OK")) // exclude "KEYS", "FLAG", "WAIT_STORE_MSG_OK"
+                    .forEach(entry -> {
+                        rocketMsg.putUserProperty("USERS_" + entry.getKey(), String.valueOf(entry.getValue())); // add other properties with prefix "USERS_"
+                    });
+
+        }
+
+        return rocketMsg;
     }
 
 }
