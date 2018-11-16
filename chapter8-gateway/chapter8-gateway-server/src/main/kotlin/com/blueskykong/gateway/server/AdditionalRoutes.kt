@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class AdditionalRoutes {
+open class AdditionalRoutes {
 
     @Bean
-    fun additionalRouteLocator(builder: RouteLocatorBuilder): RouteLocator = builder.routes {
+    open fun additionalRouteLocator(builder: RouteLocatorBuilder): RouteLocator = builder.routes {
         route(id = "test-kotlin") {
             host("kotlin.abc.org") and path("/image/png")
             filters {
