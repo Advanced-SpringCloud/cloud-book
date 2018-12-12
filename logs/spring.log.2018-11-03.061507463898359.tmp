@@ -1,0 +1,334 @@
+2018-11-04 10:36:30.950  INFO 3903 --- [main] c.r.r.rocketdemo.RocketDemoApplication   : Starting RocketDemoApplication on Taoyes-MBP.local with PID 3903 (/Users/simu/book/cloud-book/chapter10-stream/rocket-demo/target/classes started by simu in /Users/simu/book/cloud-book)
+2018-11-04 10:36:30.957  INFO 3903 --- [main] c.r.r.rocketdemo.RocketDemoApplication   : No active profile set, falling back to default profiles: default
+2018-11-04 10:36:31.023  INFO 3903 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@db57326: startup date [Sun Nov 04 10:36:31 CST 2018]; root of context hierarchy
+2018-11-04 10:36:31.615  INFO 3903 --- [main] o.s.i.config.IntegrationRegistrar        : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2018-11-04 10:36:32.117  INFO 3903 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2018-11-04 10:36:32.121  INFO 3903 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2018-11-04 10:36:32.271  INFO 3903 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$16ec6d87] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-11-04 10:36:32.368  INFO 3903 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration$$EnhancerBySpringCGLIB$$bb726a88] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-11-04 10:36:32.916  INFO 3903 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9661 (http)
+2018-11-04 10:36:32.948  INFO 3903 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-11-04 10:36:32.948  INFO 3903 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-11-04 10:36:32.954  INFO 3903 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/simu/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2018-11-04 10:36:33.069  INFO 3903 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-11-04 10:36:33.070  INFO 3903 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2047 ms
+2018-11-04 10:36:33.225  INFO 3903 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-11-04 10:36:33.233  INFO 3903 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-11-04 10:36:33.233  INFO 3903 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-11-04 10:36:33.234  INFO 3903 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-11-04 10:36:33.234  INFO 3903 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-11-04 10:36:33.918  INFO 3903 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2018-11-04 10:36:34.275  INFO 3903 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-04 10:36:34.556  INFO 3903 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@db57326: startup date [Sun Nov 04 10:36:31 CST 2018]; root of context hierarchy
+2018-11-04 10:36:34.853  INFO 3903 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[POST]}" onto public void com.remcarpediem.rocket.rocketdemo.TestController.sendOrder(com.remcarpediem.rocket.rocketdemo.Order)
+2018-11-04 10:36:34.864  INFO 3903 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-11-04 10:36:34.867  INFO 3903 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-11-04 10:36:34.945  INFO 3903 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-04 10:36:34.946  INFO 3903 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-04 10:36:35.622  INFO 3903 --- [main] o.s.integration.channel.DirectChannel    : Channel 'tm-server.input' has 1 subscriber(s).
+2018-11-04 10:36:35.623  INFO 3903 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-04 10:36:35.635  INFO 3903 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'rabbitConnectionFactory' has been autodetected for JMX exposure
+2018-11-04 10:36:35.637  INFO 3903 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'integrationMbeanExporter' has been autodetected for JMX exposure
+2018-11-04 10:36:35.640  INFO 3903 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'integrationMbeanExporter': registering with JMX server as MBean [org.springframework.integration.monitor:name=integrationMbeanExporter,type=IntegrationMBeanExporter]
+2018-11-04 10:36:35.698  INFO 3903 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'rabbitConnectionFactory': registering with JMX server as MBean [org.springframework.amqp.rabbit.connection:name=rabbitConnectionFactory,type=CachingConnectionFactory]
+2018-11-04 10:36:35.717  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering beans for JMX exposure on startup
+2018-11-04 10:36:35.717  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel output
+2018-11-04 10:36:35.720  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=output': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=output]
+2018-11-04 10:36:35.758  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel nullChannel
+2018-11-04 10:36:35.759  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=nullChannel': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=nullChannel]
+2018-11-04 10:36:35.769  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel input
+2018-11-04 10:36:35.771  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=input': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=input]
+2018-11-04 10:36:35.783  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel errorChannel
+2018-11-04 10:36:35.784  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=errorChannel': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=errorChannel]
+2018-11-04 10:36:35.811  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageHandler errorLogger
+2018-11-04 10:36:35.812  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageHandler,name=errorLogger,bean=internal': registering with JMX server as MBean [org.springframework.integration:type=MessageHandler,name=errorLogger,bean=internal]
+2018-11-04 10:36:35.837  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageHandler org.springframework.cloud.stream.binding.StreamListenerMessageHandler@5974b7e8
+2018-11-04 10:36:35.898  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageHandler,name=org.springframework.cloud.stream.binding.StreamListenerMessageHandler@5974b7e8,bean=handler': registering with JMX server as MBean [org.springframework.integration:type=MessageHandler,name=org.springframework.cloud.stream.binding.StreamListenerMessageHandler@5974b7e8,bean=handler]
+2018-11-04 10:36:35.976  INFO 3903 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147482648
+2018-11-04 10:36:41.104  INFO 3903 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@47829d6d: startup date [Sun Nov 04 10:36:41 CST 2018]; parent: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@db57326
+2018-11-04 10:36:41.374  INFO 3903 --- [main] c.s.b.r.p.RocketExchangeQueueProvisioner : Using topic for outbound: sms
+2018-11-04 10:36:41.375  INFO 3903 --- [main] c.s.b.r.p.RocketExchangeQueueProvisioner : (this.configurationProperties:RocketMQBinderConfigurationProperties{nameSrvAddr=[127.0.0.1], defaultNameSrvPort='9876', configuration={}, brokers=[localhost], defaultBrokerPort='9092', headers=[], offsetUpdateTimeWindow=10000, offsetUpdateCount=0, offsetUpdateShutdownTimeout=2000, maxWait=100, autoCreateTopics=true, autoAddPartitions=false, socketBufferSize=2097152, nameSrvSessionTimeout=10000, nameSrvConnectionTimeout=10000, requiredAcks=1, replicationFactor=1, fetchSize=1048576, minPartitionCount=1, queueSize=8192, healthTimeout=60}
+2018-11-04 10:36:41.408  INFO 3903 --- [main] o.s.c.s.b.rocket.support.RocketTemplate  : =======================
+2018-11-04 10:36:41.410  INFO 3903 --- [main] o.s.c.s.b.rocket.support.RocketTemplate  : TopicConfig [topicName=sms, readQueueNums=16, writeQueueNums=16, perm=RW-, topicFilterType=SINGLE_TAG, topicSysFlag=0, order=false]
+2018-11-04 10:36:41.410  INFO 3903 --- [main] o.s.c.s.b.rocket.support.RocketTemplate  : [producer]nameSrvConnectionString:127.0.0.1:9876,groupName:test
+2018-11-04 10:36:56.695  INFO 3903 --- [main] o.s.integration.channel.DirectChannel    : Channel 'tm-server.output' has 1 subscriber(s).
+2018-11-04 10:36:56.698  INFO 3903 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2018-11-04 10:36:56.698  INFO 3903 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2018-11-04 10:36:56.698  INFO 3903 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'tm-server.errorChannel' has 1 subscriber(s).
+2018-11-04 10:36:56.698  INFO 3903 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started _org.springframework.integration.errorLogger
+2018-11-04 10:36:56.698  INFO 3903 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147482647
+2018-11-04 10:36:56.727  INFO 3903 --- [main] c.s.b.r.p.RocketExchangeQueueProvisioner : (this.configurationProperties:RocketMQBinderConfigurationProperties{nameSrvAddr=[127.0.0.1], defaultNameSrvPort='9876', configuration={}, brokers=[localhost], defaultBrokerPort='9092', headers=[], offsetUpdateTimeWindow=10000, offsetUpdateCount=0, offsetUpdateShutdownTimeout=2000, maxWait=100, autoCreateTopics=true, autoAddPartitions=false, socketBufferSize=2097152, nameSrvSessionTimeout=10000, nameSrvConnectionTimeout=10000, requiredAcks=1, replicationFactor=1, fetchSize=1048576, minPartitionCount=1, queueSize=8192, healthTimeout=60}
+2018-11-04 10:36:56.743  INFO 3903 --- [main] .s.c.s.b.r.s.RocketInboundChannelAdapter : started org.springframework.cloud.stream.binder.rocket.support.RocketInboundChannelAdapter@463afa6e
+2018-11-04 10:36:56.745  INFO 3903 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-11-04 10:36:56.761 ERROR 3903 --- [main] o.apache.catalina.core.StandardService   : Failed to start connector [Connector[HTTP/1.1-9661]]
+
+org.apache.catalina.LifecycleException: Failed to start component [Connector[HTTP/1.1-9661]]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:167)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:261)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:198)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:300)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:162)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:551)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:386)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1242)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1230)
+	at com.remcarpediem.rocket.rocketdemo.RocketDemoApplication.main(RocketDemoApplication.java:17)
+Caused by: org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1020)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	... 13 common frames omitted
+Caused by: java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:433)
+	at sun.nio.ch.Net.bind(Net.java:425)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:219)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1151)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:591)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1018)
+	... 14 common frames omitted
+
+2018-11-04 10:36:56.783  INFO 3903 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2018-11-04 10:36:56.805  INFO 3903 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-11-04 10:36:56.811 ERROR 3903 --- [main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 9661 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 9661, or configure this application to listen on another port.
+
+2018-11-04 10:36:56.812  INFO 3903 --- [main] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@db57326: startup date [Sun Nov 04 10:36:31 CST 2018]; root of context hierarchy
+2018-11-04 10:36:56.815  INFO 3903 --- [main] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@47829d6d: startup date [Sun Nov 04 10:36:41 CST 2018]; parent: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@db57326
+2018-11-04 10:36:56.818  INFO 3903 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-11-04 10:36:56.819  INFO 3903 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147482647
+2018-11-04 10:36:56.820  INFO 3903 --- [main] .s.c.s.b.r.s.RocketInboundChannelAdapter : stopped org.springframework.cloud.stream.binder.rocket.support.RocketInboundChannelAdapter@463afa6e
+2018-11-04 10:36:56.821  INFO 3903 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 0
+2018-11-04 10:36:56.826  INFO 3903 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2018-11-04 10:36:56.826  INFO 3903 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'tm-server.errorChannel' has 0 subscriber(s).
+2018-11-04 10:36:56.826  INFO 3903 --- [main] o.s.i.endpoint.EventDrivenConsumer       : stopped _org.springframework.integration.errorLogger
+2018-11-04 10:36:56.826  INFO 3903 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase -2147482648
+2018-11-04 10:36:56.842  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Unregistering JMX-exposed beans on shutdown
+2018-11-04 10:36:56.843  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Unregistering JMX-exposed beans
+2018-11-04 10:36:56.844  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Summary on shutdown: output
+2018-11-04 10:36:56.844  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Summary on shutdown: nullChannel
+2018-11-04 10:36:56.844  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Summary on shutdown: input
+2018-11-04 10:36:56.844  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Summary on shutdown: errorChannel
+2018-11-04 10:36:56.844  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Summary on shutdown: _org.springframework.integration.errorLogger.handler
+2018-11-04 10:36:56.844  INFO 3903 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Summary on shutdown: org.springframework.cloud.stream.binding.StreamListenerMessageHandler@5974b7e8
+2018-11-04 10:36:56.846  INFO 3903 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-04 10:36:56.848  INFO 3903 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-04 10:36:56.849  INFO 3903 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
+2018-11-04 10:37:01.807  WARN 3903 --- [MQClientFactoryScheduledThread] io.netty.channel.AbstractChannel         : Force-closing a channel whose registration task was not accepted by an event loop: [id: 0xfe478db5]
+
+java.util.concurrent.RejectedExecutionException: event executor terminated
+	at io.netty.util.concurrent.SingleThreadEventExecutor.reject(SingleThreadEventExecutor.java:842)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.offerTask(SingleThreadEventExecutor.java:328)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.addTask(SingleThreadEventExecutor.java:321)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.execute(SingleThreadEventExecutor.java:765)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.register(AbstractChannel.java:479)
+	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:80)
+	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:74)
+	at io.netty.channel.MultithreadEventLoopGroup.register(MultithreadEventLoopGroup.java:86)
+	at io.netty.bootstrap.AbstractBootstrap.initAndRegister(AbstractBootstrap.java:333)
+	at io.netty.bootstrap.Bootstrap.doResolveAndConnect(Bootstrap.java:163)
+	at io.netty.bootstrap.Bootstrap.connect(Bootstrap.java:145)
+	at org.apache.rocketmq.remoting.netty.NettyRemotingClient.createChannel(NettyRemotingClient.java:478)
+	at org.apache.rocketmq.remoting.netty.NettyRemotingClient.getAndCreateNameserverChannel(NettyRemotingClient.java:433)
+	at org.apache.rocketmq.remoting.netty.NettyRemotingClient.getAndCreateChannel(NettyRemotingClient.java:394)
+	at org.apache.rocketmq.remoting.netty.NettyRemotingClient.invokeSync(NettyRemotingClient.java:363)
+	at org.apache.rocketmq.client.impl.MQClientAPIImpl.getTopicRouteInfoFromNameServer(MQClientAPIImpl.java:1207)
+	at org.apache.rocketmq.client.impl.MQClientAPIImpl.getTopicRouteInfoFromNameServer(MQClientAPIImpl.java:1197)
+	at org.apache.rocketmq.client.impl.factory.MQClientInstance.updateTopicRouteInfoFromNameServer(MQClientInstance.java:605)
+	at org.apache.rocketmq.client.impl.factory.MQClientInstance.updateTopicRouteInfoFromNameServer(MQClientInstance.java:492)
+	at org.apache.rocketmq.client.impl.factory.MQClientInstance.updateTopicRouteInfoFromNameServer(MQClientInstance.java:361)
+	at org.apache.rocketmq.client.impl.factory.MQClientInstance$3.run(MQClientInstance.java:278)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:308)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+2018-11-04 10:37:01.821 ERROR 3903 --- [MQClientFactoryScheduledThread] i.n.u.c.D.rejectedExecution              : Failed to submit a listener notification task. Event loop shut down?
+
+java.util.concurrent.RejectedExecutionException: event executor terminated
+	at io.netty.util.concurrent.SingleThreadEventExecutor.reject(SingleThreadEventExecutor.java:842)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.offerTask(SingleThreadEventExecutor.java:328)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.addTask(SingleThreadEventExecutor.java:321)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.execute(SingleThreadEventExecutor.java:765)
+	at io.netty.util.concurrent.DefaultPromise.safeExecute(DefaultPromise.java:768)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:432)
+	at io.netty.util.concurrent.DefaultPromise.trySuccess(DefaultPromise.java:103)
+	at io.netty.channel.DefaultChannelPromise.trySuccess(DefaultChannelPromise.java:84)
+	at io.netty.channel.AbstractChannel$CloseFuture.setClosed(AbstractChannel.java:1148)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.register(AbstractChannel.java:490)
+	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:80)
+	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:74)
+	at io.netty.channel.MultithreadEventLoopGroup.register(MultithreadEventLoopGroup.java:86)
+	at io.netty.bootstrap.AbstractBootstrap.initAndRegister(AbstractBootstrap.java:333)
+	at io.netty.bootstrap.Bootstrap.doResolveAndConnect(Bootstrap.java:163)
+	at io.netty.bootstrap.Bootstrap.connect(Bootstrap.java:145)
+	at org.apache.rocketmq.remoting.netty.NettyRemotingClient.createChannel(NettyRemotingClient.java:478)
+	at org.apache.rocketmq.remoting.netty.NettyRemotingClient.getAndCreateNameserverChannel(NettyRemotingClient.java:433)
+	at org.apache.rocketmq.remoting.netty.NettyRemotingClient.getAndCreateChannel(NettyRemotingClient.java:394)
+	at org.apache.rocketmq.remoting.netty.NettyRemotingClient.invokeSync(NettyRemotingClient.java:363)
+	at org.apache.rocketmq.client.impl.MQClientAPIImpl.getTopicRouteInfoFromNameServer(MQClientAPIImpl.java:1207)
+	at org.apache.rocketmq.client.impl.MQClientAPIImpl.getTopicRouteInfoFromNameServer(MQClientAPIImpl.java:1197)
+	at org.apache.rocketmq.client.impl.factory.MQClientInstance.updateTopicRouteInfoFromNameServer(MQClientInstance.java:605)
+	at org.apache.rocketmq.client.impl.factory.MQClientInstance.updateTopicRouteInfoFromNameServer(MQClientInstance.java:492)
+	at org.apache.rocketmq.client.impl.factory.MQClientInstance.updateTopicRouteInfoFromNameServer(MQClientInstance.java:361)
+	at org.apache.rocketmq.client.impl.factory.MQClientInstance$3.run(MQClientInstance.java:278)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:308)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+2018-11-04 10:37:01.821 ERROR 3903 --- [MQClientFactoryScheduledThread] i.n.u.c.D.rejectedExecution              : Failed to submit a listener notification task. Event loop shut down?
+
+java.util.concurrent.RejectedExecutionException: event executor terminated
+	at io.netty.util.concurrent.SingleThreadEventExecutor.reject(SingleThreadEventExecutor.java:842)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.offerTask(SingleThreadEventExecutor.java:328)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.addTask(SingleThreadEventExecutor.java:321)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.execute(SingleThreadEventExecutor.java:765)
+	at io.netty.util.concurrent.DefaultPromise.safeExecute(DefaultPromise.java:768)
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:432)
+	at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:121)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.safeSetFailure(AbstractChannel.java:987)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.register(AbstractChannel.java:491)
+	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:80)
+	at io.netty.channel.SingleThreadEventLoop.register(SingleThreadEventLoop.java:74)
+	at io.netty.channel.MultithreadEventLoopGroup.register(MultithreadEventLoopGroup.java:86)
+	at io.netty.bootstrap.AbstractBootstrap.initAndRegister(AbstractBootstrap.java:333)
+	at io.netty.bootstrap.Bootstrap.doResolveAndConnect(Bootstrap.java:163)
+	at io.netty.bootstrap.Bootstrap.connect(Bootstrap.java:145)
+	at org.apache.rocketmq.remoting.netty.NettyRemotingClient.createChannel(NettyRemotingClient.java:478)
+	at org.apache.rocketmq.remoting.netty.NettyRemotingClient.getAndCreateNameserverChannel(NettyRemotingClient.java:433)
+	at org.apache.rocketmq.remoting.netty.NettyRemotingClient.getAndCreateChannel(NettyRemotingClient.java:394)
+	at org.apache.rocketmq.remoting.netty.NettyRemotingClient.invokeSync(NettyRemotingClient.java:363)
+	at org.apache.rocketmq.client.impl.MQClientAPIImpl.getTopicRouteInfoFromNameServer(MQClientAPIImpl.java:1207)
+	at org.apache.rocketmq.client.impl.MQClientAPIImpl.getTopicRouteInfoFromNameServer(MQClientAPIImpl.java:1197)
+	at org.apache.rocketmq.client.impl.factory.MQClientInstance.updateTopicRouteInfoFromNameServer(MQClientInstance.java:605)
+	at org.apache.rocketmq.client.impl.factory.MQClientInstance.updateTopicRouteInfoFromNameServer(MQClientInstance.java:492)
+	at org.apache.rocketmq.client.impl.factory.MQClientInstance.updateTopicRouteInfoFromNameServer(MQClientInstance.java:361)
+	at org.apache.rocketmq.client.impl.factory.MQClientInstance$3.run(MQClientInstance.java:278)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+	at java.util.concurrent.FutureTask.runAndReset$$$capture(FutureTask.java:308)
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$301(ScheduledThreadPoolExecutor.java:180)
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:294)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+
+2018-11-04 10:38:17.294  INFO 3915 --- [main] c.r.r.rocketdemo.RocketDemoApplication   : Starting RocketDemoApplication on Taoyes-MBP.local with PID 3915 (/Users/simu/book/cloud-book/chapter10-stream/rocket-demo/target/classes started by simu in /Users/simu/book/cloud-book)
+2018-11-04 10:38:17.297  INFO 3915 --- [main] c.r.r.rocketdemo.RocketDemoApplication   : No active profile set, falling back to default profiles: default
+2018-11-04 10:38:17.338  INFO 3915 --- [main] ConfigServletWebServerApplicationContext : Refreshing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@34a875b3: startup date [Sun Nov 04 10:38:17 CST 2018]; root of context hierarchy
+2018-11-04 10:38:17.831  INFO 3915 --- [main] o.s.i.config.IntegrationRegistrar        : No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2018-11-04 10:38:18.267  INFO 3915 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2018-11-04 10:38:18.272  INFO 3915 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2018-11-04 10:38:18.397  INFO 3915 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$1fe455ce] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-11-04 10:38:18.467  INFO 3915 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration$$EnhancerBySpringCGLIB$$c46a52cf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-11-04 10:38:18.915  INFO 3915 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9662 (http)
+2018-11-04 10:38:18.939  INFO 3915 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2018-11-04 10:38:18.939  INFO 3915 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.34
+2018-11-04 10:38:18.945  INFO 3915 --- [localhost-startStop-1] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/simu/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2018-11-04 10:38:19.048  INFO 3915 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-11-04 10:38:19.048  INFO 3915 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1710 ms
+2018-11-04 10:38:19.183  INFO 3915 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2018-11-04 10:38:19.194  INFO 3915 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-11-04 10:38:19.195  INFO 3915 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-11-04 10:38:19.195  INFO 3915 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-11-04 10:38:19.196  INFO 3915 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-11-04 10:38:19.682  INFO 3915 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService 'taskScheduler'
+2018-11-04 10:38:19.981  INFO 3915 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-04 10:38:20.144  INFO 3915 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@34a875b3: startup date [Sun Nov 04 10:38:17 CST 2018]; root of context hierarchy
+2018-11-04 10:38:20.389  INFO 3915 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test],methods=[POST]}" onto public void com.remcarpediem.rocket.rocketdemo.TestController.sendOrder(com.remcarpediem.rocket.rocketdemo.Order)
+2018-11-04 10:38:20.395  INFO 3915 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-11-04 10:38:20.395  INFO 3915 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-11-04 10:38:20.440  INFO 3915 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-04 10:38:20.441  INFO 3915 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-11-04 10:38:21.110  INFO 3915 --- [main] o.s.integration.channel.DirectChannel    : Channel 'tm-server.input' has 1 subscriber(s).
+2018-11-04 10:38:21.111  INFO 3915 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-11-04 10:38:21.121  INFO 3915 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'rabbitConnectionFactory' has been autodetected for JMX exposure
+2018-11-04 10:38:21.123  INFO 3915 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'integrationMbeanExporter' has been autodetected for JMX exposure
+2018-11-04 10:38:21.126  INFO 3915 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'integrationMbeanExporter': registering with JMX server as MBean [org.springframework.integration.monitor:name=integrationMbeanExporter,type=IntegrationMBeanExporter]
+2018-11-04 10:38:21.164  INFO 3915 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'rabbitConnectionFactory': registering with JMX server as MBean [org.springframework.amqp.rabbit.connection:name=rabbitConnectionFactory,type=CachingConnectionFactory]
+2018-11-04 10:38:21.179  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering beans for JMX exposure on startup
+2018-11-04 10:38:21.180  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel nullChannel
+2018-11-04 10:38:21.182  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=nullChannel': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=nullChannel]
+2018-11-04 10:38:21.192  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel output
+2018-11-04 10:38:21.193  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=output': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=output]
+2018-11-04 10:38:21.224  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel input
+2018-11-04 10:38:21.225  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=input': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=input]
+2018-11-04 10:38:21.235  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageChannel errorChannel
+2018-11-04 10:38:21.236  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageChannel,name=errorChannel': registering with JMX server as MBean [org.springframework.integration:type=MessageChannel,name=errorChannel]
+2018-11-04 10:38:21.262  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageHandler org.springframework.cloud.stream.binding.StreamListenerMessageHandler@4de79b7d
+2018-11-04 10:38:21.264  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageHandler,name=org.springframework.cloud.stream.binding.StreamListenerMessageHandler@4de79b7d,bean=handler': registering with JMX server as MBean [org.springframework.integration:type=MessageHandler,name=org.springframework.cloud.stream.binding.StreamListenerMessageHandler@4de79b7d,bean=handler]
+2018-11-04 10:38:21.284  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Registering MessageHandler errorLogger
+2018-11-04 10:38:21.291  INFO 3915 --- [main] o.s.i.monitor.IntegrationMBeanExporter   : Located managed bean 'org.springframework.integration:type=MessageHandler,name=errorLogger,bean=internal': registering with JMX server as MBean [org.springframework.integration:type=MessageHandler,name=errorLogger,bean=internal]
+2018-11-04 10:38:21.305  INFO 3915 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase -2147482648
+2018-11-04 10:38:26.402  INFO 3915 --- [main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@b5c6a30: startup date [Sun Nov 04 10:38:26 CST 2018]; parent: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@34a875b3
+2018-11-04 10:38:26.596  INFO 3915 --- [main] c.s.b.r.p.RocketExchangeQueueProvisioner : Using topic for outbound: sms
+2018-11-04 10:38:26.598  INFO 3915 --- [main] c.s.b.r.p.RocketExchangeQueueProvisioner : (this.configurationProperties:RocketMQBinderConfigurationProperties{nameSrvAddr=[127.0.0.1], defaultNameSrvPort='9876', configuration={}, brokers=[localhost], defaultBrokerPort='9092', headers=[], offsetUpdateTimeWindow=10000, offsetUpdateCount=0, offsetUpdateShutdownTimeout=2000, maxWait=100, autoCreateTopics=true, autoAddPartitions=false, socketBufferSize=2097152, nameSrvSessionTimeout=10000, nameSrvConnectionTimeout=10000, requiredAcks=1, replicationFactor=1, fetchSize=1048576, minPartitionCount=1, queueSize=8192, healthTimeout=60}
+2018-11-04 10:38:26.629  INFO 3915 --- [main] o.s.c.s.b.rocket.support.RocketTemplate  : =======================
+2018-11-04 10:38:26.630  INFO 3915 --- [main] o.s.c.s.b.rocket.support.RocketTemplate  : TopicConfig [topicName=sms, readQueueNums=16, writeQueueNums=16, perm=RW-, topicFilterType=SINGLE_TAG, topicSysFlag=0, order=false]
+2018-11-04 10:38:26.630  INFO 3915 --- [main] o.s.c.s.b.rocket.support.RocketTemplate  : [producer]nameSrvConnectionString:127.0.0.1:9876,groupName:test
+2018-11-04 10:38:41.816  INFO 3915 --- [main] o.s.integration.channel.DirectChannel    : Channel 'tm-server.output' has 1 subscriber(s).
+2018-11-04 10:38:41.818  INFO 3915 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2018-11-04 10:38:41.819  INFO 3915 --- [main] o.s.i.endpoint.EventDrivenConsumer       : Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2018-11-04 10:38:41.819  INFO 3915 --- [main] o.s.i.channel.PublishSubscribeChannel    : Channel 'tm-server.errorChannel' has 1 subscriber(s).
+2018-11-04 10:38:41.819  INFO 3915 --- [main] o.s.i.endpoint.EventDrivenConsumer       : started _org.springframework.integration.errorLogger
+2018-11-04 10:38:41.819  INFO 3915 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147482647
+2018-11-04 10:38:41.841  INFO 3915 --- [main] c.s.b.r.p.RocketExchangeQueueProvisioner : (this.configurationProperties:RocketMQBinderConfigurationProperties{nameSrvAddr=[127.0.0.1], defaultNameSrvPort='9876', configuration={}, brokers=[localhost], defaultBrokerPort='9092', headers=[], offsetUpdateTimeWindow=10000, offsetUpdateCount=0, offsetUpdateShutdownTimeout=2000, maxWait=100, autoCreateTopics=true, autoAddPartitions=false, socketBufferSize=2097152, nameSrvSessionTimeout=10000, nameSrvConnectionTimeout=10000, requiredAcks=1, replicationFactor=1, fetchSize=1048576, minPartitionCount=1, queueSize=8192, healthTimeout=60}
+2018-11-04 10:38:41.858  INFO 3915 --- [main] .s.c.s.b.r.s.RocketInboundChannelAdapter : started org.springframework.cloud.stream.binder.rocket.support.RocketInboundChannelAdapter@76396509
+2018-11-04 10:38:41.860  INFO 3915 --- [main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-11-04 10:38:41.900  INFO 3915 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9662 (http) with context path ''
+2018-11-04 10:38:41.904  INFO 3915 --- [main] c.r.r.rocketdemo.RocketDemoApplication   : Started RocketDemoApplication in 40.106 seconds (JVM running for 45.942)
+2018-11-04 10:38:54.801  INFO 3915 --- [http-nio-9662-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-11-04 10:38:54.801  INFO 3915 --- [http-nio-9662-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-11-04 10:38:54.829  INFO 3915 --- [http-nio-9662-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 27 ms
+2018-11-04 10:40:04.322  INFO 3915 --- [http-nio-9662-exec-1] o.s.c.s.b.r.s.AmqpOutboundEndpoint       : handleMessageInternal message:Message [topic=sms, flag=0, properties={USERS_id=ae43ed1b-b629-20ca-c929-ccf9c0d0db41, USERS_timestamp=1541299134989, USERS_contentType=application/json, WAIT=false}, body=42]
+2018-11-04 10:40:10.791  INFO 3915 --- [http-nio-9662-exec-1] o.s.c.s.b.r.s.AmqpOutboundEndpoint       : SendResult [sendStatus=SEND_OK, msgId=C0A800660F4B18B4AAC211BD2E190000, offsetMsgId=C0A8006600002A9F0000000000058F6D, messageQueue=MessageQueue [topic=sms, brokerName=Taoyes-MBP.local, queueId=6], queueOffset=3]
+2018-11-04 10:40:36.192  INFO 3915 --- [ConsumeMessageThread_1] .s.c.s.b.r.s.RocketBlockingQueueConsumer : Listener:"eyJpZCI6MTExMTEsImNvbnRlbnQiOiIyMzEyMyJ9"
+2018-11-04 10:47:06.357  INFO 3915 --- [ConsumeMessageThread_1] .s.c.s.b.r.s.RocketBlockingQueueConsumer : mv.payload:[34, 101, 121, 74, 112, 90, 67, 73, 54, 77, 84, 69, 120, 77, 84, 69, 115, 73, 109, 78, 118, 98, 110, 82, 108, 98, 110, 81, 105, 79, 105, 73, 121, 77, 122, 69, 121, 77, 121, 74, 57, 34], headers:{}
+2018-11-04 10:47:06.460  INFO 3915 --- [Thread-85] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@34a875b3: startup date [Sun Nov 04 10:38:17 CST 2018]; root of context hierarchy
+2018-11-04 10:47:06.462  INFO 3915 --- [Thread-85] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@b5c6a30: startup date [Sun Nov 04 10:38:26 CST 2018]; parent: org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@34a875b3
+2018-11-04 10:47:06.466  INFO 3915 --- [Thread-85] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-11-04 10:47:06.467  INFO 3915 --- [Thread-85] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147482647
+2018-11-04 10:47:06.469  INFO 3915 --- [Thread-85] .s.c.s.b.r.s.RocketInboundChannelAdapter : stopped org.springframework.cloud.stream.binder.rocket.support.RocketInboundChannelAdapter@76396509
+2018-11-04 10:47:06.470  INFO 3915 --- [Thread-85] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 0
+2018-11-04 10:47:06.479  INFO 3915 --- [Thread-85] o.s.i.endpoint.EventDrivenConsumer       : Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2018-11-04 10:47:06.481  INFO 3915 --- [Thread-85] o.s.i.channel.PublishSubscribeChannel    : Channel 'tm-server.errorChannel' has 0 subscriber(s).
+2018-11-04 10:47:06.481  INFO 3915 --- [Thread-85] o.s.i.endpoint.EventDrivenConsumer       : stopped _org.springframework.integration.errorLogger
+2018-11-04 10:47:06.481  INFO 3915 --- [Thread-85] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase -2147482648
+2018-11-04 10:47:06.507  INFO 3915 --- [Thread-85] o.s.i.monitor.IntegrationMBeanExporter   : Unregistering JMX-exposed beans on shutdown
+2018-11-04 10:47:06.511  INFO 3915 --- [Thread-85] o.s.i.monitor.IntegrationMBeanExporter   : Unregistering JMX-exposed beans
+2018-11-04 10:47:06.512  INFO 3915 --- [Thread-85] o.s.i.monitor.IntegrationMBeanExporter   : Summary on shutdown: nullChannel
+2018-11-04 10:47:06.512  INFO 3915 --- [Thread-85] o.s.i.monitor.IntegrationMBeanExporter   : Summary on shutdown: output
+2018-11-04 10:47:06.512  INFO 3915 --- [Thread-85] o.s.i.monitor.IntegrationMBeanExporter   : Summary on shutdown: input
+2018-11-04 10:47:06.512  INFO 3915 --- [Thread-85] o.s.i.monitor.IntegrationMBeanExporter   : Summary on shutdown: errorChannel
+2018-11-04 10:47:06.513  INFO 3915 --- [Thread-85] o.s.i.monitor.IntegrationMBeanExporter   : Summary on shutdown: org.springframework.cloud.stream.binding.StreamListenerMessageHandler@4de79b7d
+2018-11-04 10:47:06.513  INFO 3915 --- [Thread-85] o.s.i.monitor.IntegrationMBeanExporter   : Summary on shutdown: _org.springframework.integration.errorLogger.handler
+2018-11-04 10:47:06.513  INFO 3915 --- [Thread-85] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-11-04 10:47:06.514  INFO 3915 --- [Thread-85] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-11-04 10:47:06.515  INFO 3915 --- [Thread-85] o.s.s.c.ThreadPoolTaskScheduler          : Shutting down ExecutorService 'taskScheduler'
