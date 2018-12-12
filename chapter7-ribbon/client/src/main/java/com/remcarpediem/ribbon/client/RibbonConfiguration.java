@@ -14,6 +14,12 @@ public class RibbonConfiguration {
     @Autowired
     IClientConfig ribbonClientConfig;
 
+    // 使用该IPing会导致ZoneAwareLoadbalancer中的uplist为0，从而导致no instance
+//    @Bean
+//    public IPing ribbonPing() {
+//        return new PingUrl();
+//    }
+
     @Bean
     public IRule ribbonRule() {
         // 负载均衡规则，改为随机
