@@ -12,12 +12,6 @@ public class AnotherServerApplication {
         SpringApplication.run(AnotherServerApplication.class, args);
     }
 
-    @RequestMapping("/order")
-    public Order getOrderDetail() {
-        Order order = new Order();
-        order.setId(2L);
-        order.setContent("from another server");
-        return order;
-    }
+
 }
 

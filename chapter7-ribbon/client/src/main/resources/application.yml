@@ -1,7 +1,8 @@
 trade:
   eureka:
     enabled: false
-  listOfServers: localhost:8081,localhost:8082
+
+  listOfServers: 127.0.0.1:8081,127.0.0.1:8082
   ServerListRefreshInterval: 15000
 server:
   port: 8080
