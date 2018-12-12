@@ -43,7 +43,8 @@ public class GatewayUserApplication {
     }
 
     @PostMapping("/body")
-    public String testException(@RequestBody String content) {
+    public String testException() {
+        String content = "ok";
         System.out.println(content);
         return content;
     }

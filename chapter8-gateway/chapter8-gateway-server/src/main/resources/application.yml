@@ -33,7 +33,7 @@ spring:
         enabled: true
       default-filters:
       - AddResponseHeader=X-Response-Default-Foo, Default-Bar
-
+      - RemoveRequestHeader=Origin
       routes:
       # =====================================
       - id: route_retry

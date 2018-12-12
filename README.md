@@ -8,4 +8,12 @@
 
 如遇刊印和错误，请加入读者群核实和校正，感谢您的支持。
 
-![读者讨论组](http://image.blueskykong.com/fb-group-medium.jpg)
+### 12/11 更新
+修复第八章，Hystrix过滤器使用过程产生的`com.netflix.hystrix.exception.HystrixRuntimeException: fallbackcmd failed and fallback failed.`
+
+增加 `- RemoveRequestHeader=Origin`过滤器。
+
+
+#### 加入读者交流群
+
+![微信公众号](http://image.blueskykong.com/wechat-public-code.jpg)
